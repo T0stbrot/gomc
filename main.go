@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/SpencerSharkey/gomc/query"
+	"github.com/T0stbrot/gomc/query"
 )
 
 // Version - app release version
