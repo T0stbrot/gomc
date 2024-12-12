@@ -33,13 +33,18 @@ func NewRequest() *Request {
 }
 
 // Connect initiates a new connection to the Minecraft server host
-func (req *Request) Connect(hostaddr string) error {
+func (req *Request) Connect(hostaddr string, localaddr string) error {
 	addr, err := net.ResolveUDPAddr("udp4", hostaddr)
 	if err != nil {
 		return errors.New("error resolving host: " + err.Error())
 	}
 
-	req.con, err = net.DialUDP("udp4", nil, addr)
+	laddr, err := net.ResolveUDPAddr("udp4", localaddr)
+	if err != nil {
+		return errors.New("error resolving local address: " + err.Error())
+	}
+
+	req.con, err = net.DialUDP("udp4", nil, laddr, addr)
 	if err != nil {
 		return errors.New("error dialing udp4: " + err.Error())
 	}
