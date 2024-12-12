@@ -44,7 +44,7 @@ func (req *Request) Connect(hostaddr string, localaddr string) error {
 		return errors.New("error resolving local address: " + err.Error())
 	}
 
-	req.con, err = net.DialUDP("udp4", nil, laddr, addr)
+	req.con, err = net.DialUDP("udp4", laddr, addr)
 	if err != nil {
 		return errors.New("error dialing udp4: " + err.Error())
 	}
