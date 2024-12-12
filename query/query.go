@@ -111,14 +111,14 @@ func (req *Request) verifyResponseHeader(input *bytes.Buffer) error {
 	// first byte is always 0x00 or 0x09 (packet type)
 	bytesRead, err = input.Read(buf[:1])
 	if err != nil || bytesRead != 1 || (buf[0] != 0x00 && buf[0] != 0x09) {
-		log.Printf("Raw response bytes: %v", string(input))
+		log.Printf("Raw response bytes: %v", input.String())
 		return errors.New("invalid response header (packetType)")
 	}
 
 	// next 4 bytes are the sessionID (int32)
 	bytesRead, err = input.Read(buf[1:])
 	if err != nil || bytesRead != 4 {
-		log.Printf("Raw response bytes: %v", string(input))
+		log.Printf("Raw response bytes: %v", input.String())
 		return errors.New("invalid response header (sessionID)")
 	}
 
