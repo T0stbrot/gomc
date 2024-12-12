@@ -10,7 +10,7 @@ import (
 )
 
 // Version - app release version
-const Version string = "0.0.2"
+const Version string = "0.0.3"
 
 func doSimpleQuery(addr string) {
 	req := query.NewRequest()
